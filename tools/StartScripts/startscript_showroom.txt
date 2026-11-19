@@ -1,0 +1,50 @@
+[game]
+{
+	// Unit showroom: see doc/Showroom.md.
+	// Any installed map works; a small flat one looks best. Change mapname to one you have.
+	gametype = Beyond All Reason $VERSION;
+	mapname = Comet Catcher Remake 1.8;
+	myplayername = ShowroomPlayer;
+	ishost = 1;
+	startpostype = 0;
+	gamestartdelay = 0;
+	nohelperais = 1;
+
+	[modoptions]
+	{
+		showroom = 1;
+		deathmode = neverend;
+	}
+
+	[player0]
+	{
+		name = ShowroomPlayer;
+		team = 0;
+	}
+
+	[allyteam0]
+	{
+		name = subject;
+	}
+
+	[allyteam1]
+	{
+		name = target;
+	}
+
+	// team0: the unit you inspect. team1: the target, on an enemy allyteam so they fight.
+	// team1 has no player or AI of its own; the gadget gives its unit every order.
+	[team0]
+	{
+		teamleader = 0;
+		allyteam = 0;
+		name = subject;
+	}
+
+	[team1]
+	{
+		teamleader = 0;
+		allyteam = 1;
+		name = target;
+	}
+}

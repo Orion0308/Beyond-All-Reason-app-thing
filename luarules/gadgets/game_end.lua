@@ -244,9 +244,11 @@ if gadgetHandler:IsSyncedCode() then
 	function gadget:Initialize()
 		-- editor_sandbox=1 is the map editor's start-script flag (New Map / Open
 		-- Project): the session must never end, whatever deathmode it inherited.
+		-- A unit showroom (showroom=1) ends when the player quits, not when a duel is lost.
 		if
 			Spring.GetModOptions().deathmode == "neverend"
 			or tostring(Spring.GetModOptions().editor_sandbox or "") == "1"
+			or VFS.Include("common/showroom.lua").IsSession(Spring.GetModOptions())
 		then
 			gadgetHandler:RemoveGadget(self)
 			return

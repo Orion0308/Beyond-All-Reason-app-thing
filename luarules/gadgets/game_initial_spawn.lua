@@ -604,6 +604,10 @@ if gadgetHandler:IsSyncedCode() then
 		if not scenarioSpawnsUnits and tostring(Spring.GetModOptions().editor_sandbox or "") == "1" then
 			scenarioSpawnsUnits = true
 		end
+		-- Unit showroom sessions (showroom=1): game_showroom.lua stages the units itself.
+		if not scenarioSpawnsUnits and VFS.Include("common/showroom.lua").IsSession(Spring.GetModOptions()) then
+			scenarioSpawnsUnits = true
+		end
 
 		if not scenarioSpawnsUnits then
 			if not (luaAI and (string.find(luaAI, "Scavengers") or luaAI == "RaptorsAI")) then

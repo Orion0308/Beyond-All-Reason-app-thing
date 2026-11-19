@@ -159,6 +159,10 @@ function gadget:Initialize()
 	if tostring(Spring.GetModOptions().editor_sandbox or "") == "1" then
 		gadgetHandler:RemoveGadget(self)
 	end
+	-- Unit showroom sessions have no commanders either.
+	if VFS.Include("common/showroom.lua").IsSession(Spring.GetModOptions()) then
+		gadgetHandler:RemoveGadget(self)
+	end
 
 	local allyTeamList = spGetAllyTeamList()
 	for i = 1, #allyTeamList do

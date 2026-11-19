@@ -2175,6 +2175,15 @@ local options = {
 	},
 	-- NOTE: update language/en/interface.json when you change name or desc
 	{
+		key = "showroom",
+		name = "Unit Showroom",
+		desc = "Launch as a unit showroom: no commanders, no game end, a close-up camera and stats panel on one unit and an optional target.",
+		section = "dev",
+		type = "bool",
+		def = false,
+	},
+	-- NOTE: update language/en/interface.json when you change name or desc
+	{
 		key = "pushresistant",
 		name = "Pushresistance",
 		desc = "Enable to do desync test by the use of pushresistance",

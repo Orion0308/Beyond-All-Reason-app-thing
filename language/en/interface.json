@@ -4558,6 +4558,10 @@
 			"name": "Map Editor Session",
 			"desc": "Launch as a map editor: the combat UI is left out and the terraformer opens on load."
 		},
+		"showroom": {
+			"name": "Unit Showroom",
+			"desc": "Launch as a unit showroom: no commanders, no game end, a close-up camera and stats panel on one unit and an optional target."
+		},
 		"pushresistant": {
 			"name": "Pushresistance",
 			"desc": "Enable to do desync test by the use of pushresistance"
