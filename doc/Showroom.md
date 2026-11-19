@@ -159,7 +159,7 @@ speed, zoom step, follow stiffness and auto-rotate speed.
 | `widget:MousePress(x, y, button)` | Returning `true` makes this widget the **mouse owner**, so `MouseMove` and `MouseRelease` come here. Clicks on the panel go to buttons; anything above it starts an orbit drag. |
 | `widget:MouseMove(x, y, dx, dy)` | `dx` turns the yaw and `dy` the pitch (clamped). |
 | `widget:MouseWheel(up)` | Zooms. Returning `true` stops the engine camera zooming as well. |
-| `widget:KeyPress(key, mods, isRepeat)` | `1`/`2`/`3` modes, `R` reset, `[`/`]` presets, `O` auto-rotate. Key codes come from `KEYSYMS` (`luaui/Headers/keysym.h.lua`). **Caveat:** keybind actions run *before* widgets, so a key your keybind preset already uses never arrives here. The on-screen buttons always work. |
+| `widget:KeyPress(key, mods, isRepeat)` | `1`/`2`/`3` modes, `R` reset, `[`/`]` presets, `O` auto-rotate. Key codes come from `Spring.GetKeyCode("r")`. (Not `KEYSYMS`: widgets can only see the globals listed in `luaui/system.lua`, and reading a missing one at load time stops the whole widget loading.) **Caveat:** keybind actions run *before* widgets, so a key your keybind preset already uses never arrives here. The on-screen buttons always work. |
 | `widgetHandler:AddAction("showroom", fn, nil, "t")` | Registers the `/showroom <unit> [target]` chat command (`"t"` = text action). |
 
 Screen coordinates start at the **bottom-left** corner (y grows upward), so the panel is

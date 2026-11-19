@@ -490,29 +490,37 @@ local function showroomCommand(_, line)
 	return true
 end
 
-local KEY_ACTIONS = {
-	[KEYSYMS.N_1] = function()
-		setMode("inspect")
-	end,
-	[KEYSYMS.N_2] = function()
-		setMode("target")
-	end,
-	[KEYSYMS.N_3] = function()
-		setMode("duel")
-	end,
-	[KEYSYMS.R] = function()
-		send("reset")
-	end,
-	[KEYSYMS.O] = function()
-		camera.spin = not camera.spin
-	end,
-	[KEYSYMS.LEFTBRACKET] = function()
-		stagePreset(view.presetIndex - 1)
-	end,
-	[KEYSYMS.RIGHTBRACKET] = function()
-		stagePreset(view.presetIndex + 1)
-	end,
-}
+-- Key codes come from Spring.GetKeyCode(name). (KEYSYMS is NOT available to widgets: it is
+-- not in luaui/system.lua, so reading it at load time kills the whole widget.) A key the
+-- engine cannot resolve is skipped rather than breaking the table.
+local KEY_ACTIONS = {}
+local function bindKey(name, action)
+	local code = Spring.GetKeyCode(name)
+	if code and code > 0 then
+		KEY_ACTIONS[code] = action
+	end
+end
+bindKey("1", function()
+	setMode("inspect")
+end)
+bindKey("2", function()
+	setMode("target")
+end)
+bindKey("3", function()
+	setMode("duel")
+end)
+bindKey("r", function()
+	send("reset")
+end)
+bindKey("o", function()
+	camera.spin = not camera.spin
+end)
+bindKey("[", function()
+	stagePreset(view.presetIndex - 1)
+end)
+bindKey("]", function()
+	stagePreset(view.presetIndex + 1)
+end)
 
 -- Keys are a convenience: the widget handler runs keybind ACTIONS before widget KeyPress, so a
 -- key your keybind preset already uses never reaches here. The panel buttons always work.
